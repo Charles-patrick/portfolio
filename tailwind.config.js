@@ -12,14 +12,3 @@ module.exports = {
   plugins: [],
 }
 
-import { createPreset } from "fumadocs-ui/tailwind-plugin";
-
-module.exports = {
-  presets: [createPreset()],
-  content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./content/**/*.{md,mdx}",
-    "./node_modules/fumadocs-ui/dist/**/*.js",
-  ],
-};
-

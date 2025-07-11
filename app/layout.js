@@ -1,15 +1,10 @@
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/layout/Navbar";
+import { Inter } from 'next/font/google'
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Create Next App",
@@ -18,11 +13,24 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" className={inter.className} suppressHydrationWarning>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css"
+          precedence="default"
+        />
+      </head>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <Navbar />
+          <div className="max-w-[1400px] mx-auto px-4">{children}</div>
+        </ThemeProvider>
+        <Toaster position="bottom-right" />
       </body>
     </html>
   );
